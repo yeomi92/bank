@@ -3,18 +3,17 @@ package domain;
 import constants.Bank;
 
 public class AccountBean {
-	protected int money,accoutNo;
-	protected String uid,accountType,createDate;
-	public int getMoney() {
+	protected String uid,accountType,createDate,money,accoutNo;
+	public String getMoney() {
 		return money;
 	}
-	public void setMoney(int money) {
+	public void setMoney(String money) {
 		this.money = money;
 	}
-	public int getAccoutNo() {
+	public String getAccoutNo() {
 		return accoutNo;
 	}
-	public void setAccoutNo(int accoutNo) {
+	public void setAccoutNo(String accoutNo) {
 		this.accoutNo = accoutNo;
 	}
 	public String getUid() {

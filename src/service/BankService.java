@@ -7,4 +7,5 @@ public interface BankService {
 	public boolean checkmoney(int money);
 	public String deposit(int money);
 	public String withdraw(int money);
+	
 }

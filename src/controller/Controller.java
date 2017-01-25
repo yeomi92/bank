@@ -32,7 +32,7 @@ public class Controller {
 						}
 					}
 					member.setSsn(ssn);
-					member.setId(input("ID?"));
+					member.setUid(input("ID?"));
 					member.setName(input("¿Ã∏ß?"));
 					break;
 				case "2":

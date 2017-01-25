@@ -14,11 +14,11 @@ public class BankServiceImpl implements BankService{//business logic
 	@Override
 	public AccountBean createAccount(String uid, String accountType, int money) {
 		AccountBean account = new AccountBean();//사용하고 버려지는 것(dependency의존관계)
-		account.setAccoutNo(RandomGenerator.getRandomNum(999999,100000));
+		account.setAccoutNo(String.valueOf(RandomGenerator.getRandomNum(999999,100000)));
 		account.setCreateDate(Calendar.getInstance().get(Calendar.YEAR)+"년"+(Calendar.getInstance().get(Calendar.MONTH)+1)+"월"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+"일");
 		account.setUid(uid);
 		account.setAccountType(accountType);
-		account.setMoney(money);
+		account.setMoney(String.valueOf(money));
 		list[0]=account;
 		return account;
 	}
@@ -38,11 +38,10 @@ public class BankServiceImpl implements BankService{//business logic
 	@Override
 	public String withdraw(int money) {
 		String result=Account.WITHDRAW_FAIL;
-		if(checkmoney(list[0].getMoney()-money)){
-			list[0].setMoney(list[0].getMoney()-money);
+		if(checkmoney(Integer.parseInt(list[0].getMoney())-money)){
+			list[0].setMoney(String.valueOf(Integer.parseInt(list[0].getMoney())-money));
 			result=Account.WITHDRAW_SUCCESS;
 		}
 		return result;
 	}
-	
 }
