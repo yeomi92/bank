@@ -3,12 +3,12 @@ package serviceImpl;
 import java.util.Calendar;
 import constants.Account;
 import domain.AccountBean;
-import service.BankService;
+import service.AccountService;
 import util.RandomGenerator;
 
-public class BankServiceImpl implements BankService{//business logic
+public class AccountServiceImpl implements AccountService{//business logic
 	AccountBean[] list;//사용하고도 계속 유지(associate연관관계)
-	public BankServiceImpl() {
+	public AccountServiceImpl() {
 		list = new AccountBean[10000];
 	}
 	@Override
@@ -43,5 +43,35 @@ public class BankServiceImpl implements BankService{//business logic
 			result=Account.WITHDRAW_SUCCESS;
 		}
 		return result;
+	}
+	@Override
+	public AccountBean findByAccountNo(String accountNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public AccountBean[] findByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int countByName(String name) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public AccountBean[] list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int sount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void drop(String accountNo) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,9 +1,23 @@
 package view;
 
-import controller.Controller;
+import javax.swing.JOptionPane;
+
+import controller.AdminController;
+import controller.CustomerController;
 
 public class Index {
 	public static void main(String[] args) { 
-		new Controller().start(); //로딩속도를 빠르게 하기위해서 줄임
+		while(true){
+			switch(JOptionPane.showInputDialog("0.종료 1.일반회원 2.관리자")){
+				case "0":
+					return;
+				case "1":
+					new CustomerController().start();
+					break;
+				case "2":
+					new AdminController().start();
+					break;
+			}
+		}
 	}
 }

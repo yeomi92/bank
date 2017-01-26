@@ -1,7 +1,12 @@
 package domain;
-
+/**
+@FILE  : MemberBean.java
+@DATE  : 2017. 1. 26.
+@AUTHOR: Yeom Hye-Seon
+@STORY :
+ */
 public class MemberBean {
-	protected String ssn,name,uid,password,email,profileImg,phone;
+	protected String ssn,name,uid,password,email,profileImg,phone,rank;
 	public String getSsn() {
 		return ssn;
 	}
@@ -43,6 +48,12 @@ public class MemberBean {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getRank() {
+		return rank;
+	}
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
 	/*//보안이 필요없는 method는 stand alone으로 작성해야한다.(종속성을 없애야 한다.)
 	public String calcGender(String ssn){

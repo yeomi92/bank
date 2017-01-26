@@ -1,18 +1,18 @@
 package controller;
 
 import domain.MemberBean;
-import service.BankService;
-import serviceImpl.BankServiceImpl;
+import service.AccountService;
+import serviceImpl.AccountServiceImpl;
 
 import javax.swing.*;
 import constants.Bank;
 import domain.AccountBean;
 
-public class Controller {
+public class CustomerController {
 	public void start(){
 		MemberBean member=null;
 		AccountBean account=null;
-		BankService service = new BankServiceImpl();//기능을 다 가지고 있으므로 무조건 생성
+		AccountService service = new AccountServiceImpl();//기능을 다 가지고 있으므로 무조건 생성
 		String ssn="";
 		int i=0;
 		int temp=0;
