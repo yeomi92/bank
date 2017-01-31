@@ -15,7 +15,7 @@ public interface AdminService {
 	public void changeRank(MemberBean member);
 	//remove
 	//public void remove(String uid, String pw);//이렇게하면 PW가 노출된다.
-	public void remove(MemberBean member);
+	public void remove(String uid);
 	//util
 	//validation
 	public boolean exist(String keyword);

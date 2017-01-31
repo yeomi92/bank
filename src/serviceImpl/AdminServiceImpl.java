@@ -38,24 +38,24 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public MemberBean[] findByName(String name) {
 		MemberBean[] member = new MemberBean[countByName(name)];
-		int num=0;
+		int nameCount=0;
 		for(int i=0;i<count;i++){
 			if(name.equals(arr[i].getName())){
-				member[num]=arr[i];
-				num++;
+				member[nameCount]=arr[i];
+				nameCount++;
 			}
 		}
 		return member;
 	}
 	@Override
 	public int countByName(String name) {
-		int num=0;
+		int nameCount=0;
 		for(int i=0;i<count;i++){
 			if(name.equals(arr[i].getName())){
-				num++;
+				nameCount++;
 			}
 		}		
-		return num;
+		return nameCount;
 	}
 	//전체목록출력
 	@Override
@@ -68,13 +68,22 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	public void changeRank(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+		for(int i=0;i<count;i++){
+			if(member.getUid().equals(arr[i].getUid())){
+				arr[i].setRank(member.getRank());
+				return;
+			}
+		}
 	}
 	@Override
-	public void remove(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+	public void remove(String uid) {
+		for(int i=0;i<count;i++){
+			if(uid.equals(arr[i].getUid())){
+				arr[i]=arr[count-1];
+				count--;
+				return;
+			}
+		}		
 	}
 	@Override
 	public boolean exist(String keyword) {

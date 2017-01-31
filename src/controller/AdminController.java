@@ -27,7 +27,7 @@ public class AdminController {
 					member.setEmail((memberInfoArr[4]));
 					member.setProfileImg((memberInfoArr[5]));
 					member.setPhone((memberInfoArr[6]));*/
-					/*member.setRank("C");*/
+					member.setRank("C");
 					service.regist(member);
 					break;
 				case "2":
@@ -35,15 +35,15 @@ public class AdminController {
 					showMsg(service.exist(memId.getUid())?"회원이 존재하지 않습니다.":memId.toString());
 					break;
 				case "3":
-					MemberBean[] memName = service.findByName(input("검색할 이름을 입력하세요."));
-					if(service.exist(memName[0].getName())){
+					String nameResult=input("검색할 이름을 입력하세요.");
+					if(service.countByName(nameResult)==0){
 						showMsg("회원이 존재하지 않습니다.");
 					}else{
-						String result="";
+						MemberBean[] memName = service.findByName(nameResult);
 						for(i=0;i<memName.length;i++){
-							result+=memName[i].toString()+"\n";
+							nameResult+=memName[i].toString()+"\n";
 						}
-						showMsg(result);
+						showMsg(nameResult);
 					}
 					break;
 				case "4":
@@ -60,8 +60,13 @@ public class AdminController {
 					}
 					break;
 				case "5":
+					String[] memberRank=input("아이디, 변경할 rank를 입력하세요.").split(" ");
+					member.setUid(memberRank[0]);
+					member.setRank(memberRank[1]);
+					service.changeRank(member);
 					break;
 				case "6":
+					service.remove(input("삭제 할 아이디를 입력하세요."));
 					break;
 			}
 		}
