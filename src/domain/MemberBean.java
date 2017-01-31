@@ -73,6 +73,6 @@ public class MemberBean {
 	}*/
 	@Override
 	public String toString() {
-		return String.format("%s(%s)[ %s | %s | **** | %s | %s | %s ]",name,ssn,uid,phone,email,profileImg);
+		return String.format("%s(%s)[ %s | %s | **** | %s | %s ]",name,ssn,uid,phone,email,profileImg);
 	}
 }

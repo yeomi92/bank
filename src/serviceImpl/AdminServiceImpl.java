@@ -20,34 +20,51 @@ public class AdminServiceImpl implements AdminService{
 			for(int i=0;i<count;i++){
 				temp[i]=arr[i];
 			}
-			//System.arraycopy(arr, 0, temp, 0, count);
 			arr=temp;
 		}
 		arr[count++]=member;
 	}
 	@Override
 	public MemberBean findById(String uid) {
-		return null;
+		MemberBean member = new MemberBean();
+		for(int i=0;i<count;i++){
+			if(uid.equals(arr[i].getUid())){
+				member=arr[i];
+				break;
+			}
+		}
+		return member;
 	}
 	@Override
 	public MemberBean[] findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		MemberBean[] member = new MemberBean[countByName(name)];
+		int num=0;
+		for(int i=0;i<count;i++){
+			if(name.equals(arr[i].getName())){
+				member[num]=arr[i];
+				num++;
+			}
+		}
+		return member;
 	}
 	@Override
 	public int countByName(String name) {
-		// TODO Auto-generated method stub
-		return 0;
+		int num=0;
+		for(int i=0;i<count;i++){
+			if(name.equals(arr[i].getName())){
+				num++;
+			}
+		}		
+		return num;
 	}
 	//전체목록출력
 	@Override
 	public MemberBean[] list() {
-		arr = new MemberBean[count];
 		return arr;
 	}
 	@Override
 	public int count() {
-		return arr.length;
+		return count;
 	}
 	@Override
 	public void changeRank(MemberBean member) {
@@ -58,5 +75,9 @@ public class AdminServiceImpl implements AdminService{
 	public void remove(MemberBean member) {
 		// TODO Auto-generated method stub
 		
-	}//Business Logic
+	}
+	@Override
+	public boolean exist(String keyword) {
+		return keyword==null;
+	}
 }
