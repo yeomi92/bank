@@ -2,29 +2,20 @@ package controller;
 
 import javax.swing.*;
 import domain.MemberBean;
-import enums.Butt;
 import service.AdminService;
 import serviceImpl.AdminServiceImpl;
 
-public class AdminController {
+public class AdminController2 {
 	public void start(){
 		MemberBean member=null;
 		AdminService service = new AdminServiceImpl();//기능을 다 가지고 있으므로 무조건 생성
+		String ssn="";
 		int i=0;
-		Butt[] buttons ={Butt.CLOSE,Butt.MEMBER_ADD,Butt.FIND_BY_ID,Butt.FIND_BY_NAME,Butt.LIST,Butt.RANK,Butt.DELETE};
+		int temp=0;
 		while(true){
-			Butt select=(Butt)JOptionPane.showInputDialog(
-					null, //frame
-					"ADMIN PAGE", //frame title
-					"SELECT ADMIN MENU", //order
-					JOptionPane.QUESTION_MESSAGE, //type
-					null, //icon
-					buttons, //Array of choices
-					buttons[1] //default
-					);
-			switch(select){
-				case CLOSE:JOptionPane.showConfirmDialog(null, "EXIT Ok??");return;
-				case MEMBER_ADD:
+			switch(input("0.종료 1.회원등록 2.ID검색 3.이름검색 4.회원목록조회 5.회원등급조정 6.회원삭제")){
+				case "0":return;
+				case "1":
 					member = new MemberBean();
 					String[] memberInfoArr=input("아이디, 비밀번호, 이름, 주민등록번호, 이메일, 프로필사진, 휴대폰번호").split(" ");
 					member.setUid((memberInfoArr[0]));
@@ -37,11 +28,11 @@ public class AdminController {
 					member.setRank("C");
 					service.regist(member);
 					break;
-				case FIND_BY_ID:
+				case "2":
 					MemberBean memId = service.findById(input("검색할 아이디를 입력하세요."));
 					showMsg(service.exist(memId.getUid())?"회원이 존재하지 않습니다.":memId.toString());
 					break;
-				case FIND_BY_NAME:
+				case "3":
 					String nameResult=input("검색할 이름을 입력하세요.");
 					if(service.countByName(nameResult)==0){
 						showMsg("회원이 존재하지 않습니다.");
@@ -53,7 +44,7 @@ public class AdminController {
 						showMsg(nameResult);
 					}
 					break;
-				case LIST:
+				case "4":
 					if(service.count()==0){
 						JOptionPane.showMessageDialog(null,
 								"회원이 존재하지 않습니다");
@@ -66,13 +57,13 @@ public class AdminController {
 						JOptionPane.showMessageDialog(null,result);
 					}
 					break;
-				case RANK:
+				case "5":
 					String[] memberRank=input("아이디, 변경할 rank를 입력하세요.").split(" ");
 					member.setUid(memberRank[0]);
 					member.setRank(memberRank[1]);
 					service.changeRank(member);
 					break;
-				case DELETE:
+				case "6":
 					service.remove(input("삭제 할 아이디를 입력하세요."));
 					break;
 			}
