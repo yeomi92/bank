@@ -95,7 +95,7 @@ public class BoardController {
 		System.out.println(set.toString()+"\n");
 		// 3.검색(some)...James 가 쓴 글 검색
 		System.out.println("3. James가 쓴 글 검색: ");
-		result="";
+		result="해당 글이 없습니다.";
 		for(int i=0;i<list.size();i++){
 			if("James".equals(list.get(i).getUid())){
 				result+=list.get(i).toString()+"\n";
