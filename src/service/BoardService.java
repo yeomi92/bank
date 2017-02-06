@@ -15,4 +15,6 @@ public interface BoardService {
 	public void changeContent(ArticleBean param);
 	//Delete
 	public void removeContent(ArticleBean param);
+	//util
+	public void changeSeq(int seq);
 }

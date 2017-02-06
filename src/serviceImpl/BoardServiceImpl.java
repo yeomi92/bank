@@ -74,8 +74,18 @@ public class BoardServiceImpl implements BoardService{
 		while(it.hasNext()){
 			if(it.next().getSeq().equals(param.getSeq())){
 				it.remove();
+				//changeSeq(Integer.parseInt(it.next().getSeq()));
 				break;
 			}
 		}
+		changeSeq(Integer.parseInt(param.getSeq()));
+	}
+	@Override
+	public void changeSeq(int seq) {
+		for(int i=seq;i<list.size()+1;i++){
+			list.get(i-1).setSeq(String.valueOf(seq));
+			seq++;
+		}
+		this.seq=seq;
 	}
 }
