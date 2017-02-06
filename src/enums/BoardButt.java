@@ -1,0 +1,5 @@
+package enums;
+
+public enum BoardButt {
+	EXIT,ADD,FIND_LAST_ARTICLE,FIND_BY_SEQ,FIND_BY_ID,LIST,CHANGE,REMOVE;
+}
