@@ -48,9 +48,10 @@ public class ArticleBean {
 
 	public void setReadCount(String readCount) {
 		this.readCount = readCount;
+		
 	}
 	@Override
 	public String toString() {
-		return String.format("[ %s | %s | %s | %s | 0 ]", seq,uid,title,regdate);
+		return String.format("[ %s | %s | %s | %s | %s | %s ]\n", seq,uid,title,content,readCount,regdate);
 	}
 }
