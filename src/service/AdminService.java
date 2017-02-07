@@ -11,7 +11,7 @@ public interface AdminService {
 	public List<MemberBean> findByName(String name);//데이터전달은 Sequence개념이 있는 ArrayList로 보낸다.
 	public Map<String,MemberBean> mapFindByName(String name);
 	public List<MemberBean> memberList();//데이터전달은 Sequence개념이 있는 ArrayList로 보낸다.
-	public List<MemberBean> keyList();
+	public Set<String> keyList();
 	public int count();
 	//update
 	public void update(MemberBean member);

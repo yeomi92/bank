@@ -11,7 +11,7 @@ public class AdminController3 {
 		MemberBean member=null;
 		AdminService2 service = new AdminServiceImpl2();//기능을 다 가지고 있으므로 무조건 생성
 		int i=0;
-		Butt[] buttons ={Butt.CLOSE,Butt.MEMBER_ADD,Butt.FIND_BY_ID,Butt.FIND_BY_NAME,Butt.LIST,Butt.RANK,Butt.DELETE};
+		Butt[] buttons ={Butt.CLOSE,Butt.MEMBER_ADD,Butt.FIND_BY_ID,Butt.FIND_BY_NAME,Butt.LIST,Butt.UPDATE,Butt.DELETE};
 		while(true){
 			Butt select=(Butt)JOptionPane.showInputDialog(
 					null, //frame
@@ -66,7 +66,7 @@ public class AdminController3 {
 						JOptionPane.showMessageDialog(null,result);
 					}
 					break;
-				case RANK:
+				case UPDATE:
 					String[] memberRank=input("아이디, 변경할 rank를 입력하세요.").split(" ");
 					member.setUid(memberRank[0]);
 					member.setRank(memberRank[1]);

@@ -53,12 +53,17 @@ public class AdminServiceImpl implements AdminService{
 	}
 	@Override
 	public Map<String, MemberBean> mapFindByName(String name) {
-		return null;
+		Map<String, MemberBean> temp=new HashMap<String,MemberBean>();
+		for(Map.Entry<String, MemberBean> e : map.entrySet()){
+			if(name.equals(e.getValue().getName())){
+				temp.put(e.getKey(), e.getValue());
+			}
+		}
+		return temp;
 	}
 	@Override
-	public List<MemberBean> keyList() {
-		map.keySet();
-		return null;
+	public Set<String> keyList() {
+		return map.keySet();
 	}
 	
 }

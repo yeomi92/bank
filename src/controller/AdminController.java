@@ -11,7 +11,7 @@ public class AdminController {
 		MemberBean member=null;
 		AdminService service = new AdminServiceImpl();//기능을 다 가지고 있으므로 무조건 생성
 		int i=0;
-		Butt[] buttons ={Butt.CLOSE,Butt.MEMBER_ADD,Butt.FIND_BY_ID,Butt.FIND_BY_NAME,Butt.LIST,Butt.RANK,Butt.DELETE};
+		Butt[] buttons ={Butt.CLOSE,Butt.MEMBER_ADD,Butt.FIND_BY_ID,Butt.FIND_BY_NAME,Butt.MAP_FIND_BY_NAME,Butt.LIST,Butt.UPDATE,Butt.DELETE,Butt.KEY_LIST};
 		while(true){
 			Butt select=(Butt)JOptionPane.showInputDialog(
 					null, //frame
@@ -46,10 +46,14 @@ public class AdminController {
 					String nameResult=input("검색할 이름을 입력하세요.");
 					showMsg((service.count()==0)?"회원이 존재하지 않습니다.":service.findByName(nameResult).toString());
 					break;
+				case MAP_FIND_BY_NAME:
+					String mapNameResult=input("검색할 이름을 입력하세요.");
+					showMsg((service.count()==0)?"회원이 존재하지 않습니다.":service.mapFindByName(mapNameResult).toString());
+					break;
 				case LIST:
 					showMsg((service.count()==0)?"회원이 존재하지 않습니다.":service.memberList().toString());
 					break;
-				case RANK:
+				case UPDATE:
 					member=new MemberBean();
 					member.setUid(input("변경할 아이디를 입력하세요."));
 					member.setName(input("변경할 이름을 입력하세요."));
@@ -60,6 +64,10 @@ public class AdminController {
 				case DELETE:
 					service.remove(input("삭제 할 아이디를 입력하세요."));
 					break;
+				case KEY_LIST:
+					showMsg(service.keyList().toString());
+					break;
+				
 			}
 		}
 	}
