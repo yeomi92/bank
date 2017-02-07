@@ -8,7 +8,7 @@ public class BoardServiceImpl implements BoardService{
 	private List<ArticleBean> list;
 	private int seq;
 	public BoardServiceImpl() {
-		list=new ArrayList<ArticleBean>();//초기용량: 100, 용량 초과하면 100씩 증가
+		list=new ArrayList<ArticleBean>();
 		seq=1;
 	}
 	@Override

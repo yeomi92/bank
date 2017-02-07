@@ -38,39 +38,24 @@ public class AdminController {
 					service.regist(member);
 					break;
 				case FIND_BY_ID:
-					MemberBean memId = service.findById(input("검색할 아이디를 입력하세요."));
-					showMsg(service.exist(memId.getUid())?"회원이 존재하지 않습니다.":memId.toString());
+					member = new MemberBean();
+					member=service.findById(input("검색할 아이디를 입력하세요."));
+					showMsg((member==null)?"회원이 존재하지 않습니다.":member.toString());
 					break;
 				case FIND_BY_NAME:
 					String nameResult=input("검색할 이름을 입력하세요.");
-					if(service.countByName(nameResult)==0){
-						showMsg("회원이 존재하지 않습니다.");
-					}else{
-						MemberBean[] memName = service.findByName(nameResult);
-						for(i=0;i<memName.length;i++){
-							nameResult+=memName[i].toString()+"\n";
-						}
-						showMsg(nameResult);
-					}
+					showMsg((service.count()==0)?"회원이 존재하지 않습니다.":service.findByName(nameResult).toString());
 					break;
 				case LIST:
-					if(service.count()==0){
-						JOptionPane.showMessageDialog(null,
-								"회원이 존재하지 않습니다");
-					}else{
-						MemberBean[] arr = service.list();
-						String result = "";
-						for(i=0;i<service.count();i++){
-							result += arr[i].toString()+"\n";
-						}
-						JOptionPane.showMessageDialog(null,result);
-					}
+					showMsg((service.count()==0)?"회원이 존재하지 않습니다.":service.memberList().toString());
 					break;
 				case RANK:
-					String[] memberRank=input("아이디, 변경할 rank를 입력하세요.").split(" ");
-					member.setUid(memberRank[0]);
-					member.setRank(memberRank[1]);
-					service.changeRank(member);
+					member=new MemberBean();
+					member.setUid(input("변경할 아이디를 입력하세요."));
+					member.setName(input("변경할 이름을 입력하세요."));
+					member.setPhone(input("변경할 휴대폰 번호를 입력하세요."));
+					member.setEmail(input("변경할 email를 입력하세요."));
+					service.update(member);
 					break;
 				case DELETE:
 					service.remove(input("삭제 할 아이디를 입력하세요."));

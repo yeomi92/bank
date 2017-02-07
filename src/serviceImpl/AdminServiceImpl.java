@@ -2,91 +2,63 @@ package serviceImpl;
 
 import domain.MemberBean;
 import service.AdminService;
+import java.util.*;
 
 public class AdminServiceImpl implements AdminService{
-	private MemberBean member;
-	private MemberBean[] arr;
-	private int count;
+	private Map<String,MemberBean> map;
 	public AdminServiceImpl() {
-		member = new MemberBean();
-		count=0;
-		arr = new MemberBean[count];
+		map = new HashMap<String,MemberBean>();
 	}
-	//회원정보를 입력한 후 배열에 저장하기
 	@Override
 	public void regist(MemberBean member) {
-		if(count==arr.length){
-			MemberBean[] temp = new MemberBean[count+10];
-			for(int i=0;i<count;i++){
-				temp[i]=arr[i];
-			}
-			arr=temp;
-		}
-		arr[count++]=member;
+		map.put(member.getUid(), member);
 	}
 	@Override
 	public MemberBean findById(String uid) {
-		MemberBean member = new MemberBean();
-		for(int i=0;i<count;i++){
-			if(uid.equals(arr[i].getUid())){
-				member=arr[i];
-				break;
+		return map.get(uid);
+	}
+	@Override
+	public List<MemberBean> findByName(String name) {
+		List<MemberBean> temp=new ArrayList<MemberBean>();
+		for(MemberBean i : memberList()){
+			if(name.equals(i.getName())){
+				temp.add(i);
 			}
 		}
-		return member;
+		return temp;
 	}
 	@Override
-	public MemberBean[] findByName(String name) {
-		MemberBean[] member = new MemberBean[countByName(name)];
-		int nameCount=0;
-		for(int i=0;i<count;i++){
-			if(name.equals(arr[i].getName())){
-				member[nameCount]=arr[i];
-				nameCount++;
-			}
+	public List<MemberBean> memberList() {
+		List<MemberBean> temp=new ArrayList<MemberBean>();
+		for(Map.Entry<String, MemberBean> e : map.entrySet()){
+			temp.add(e.getValue());
 		}
-		return member;
-	}
-	@Override
-	public int countByName(String name) {
-		int nameCount=0;
-		for(int i=0;i<count;i++){
-			if(name.equals(arr[i].getName())){
-				nameCount++;
-			}
-		}		
-		return nameCount;
-	}
-	//전체목록출력
-	@Override
-	public MemberBean[] list() {
-		return arr;
+		return temp;
 	}
 	@Override
 	public int count() {
-		return count;
+		return map.size();
 	}
 	@Override
-	public void changeRank(MemberBean member) {
-		for(int i=0;i<count;i++){
-			if(member.getUid().equals(arr[i].getUid())){
-				arr[i].setRank(member.getRank());
-				return;
-			}
+	public void update(MemberBean member) {
+		if(map.containsKey(member.getUid())){
+			map.get(member.getUid()).setName(member.getName().equals("")?map.get(member.getUid()).getName():member.getName());
+			map.get(member.getUid()).setEmail(member.getEmail().equals("")?map.get(member.getUid()).getEmail():member.getEmail());
+			map.get(member.getUid()).setPhone(member.getPhone().equals("")?map.get(member.getUid()).getPhone():member.getPhone());
 		}
 	}
 	@Override
 	public void remove(String uid) {
-		for(int i=0;i<count;i++){
-			if(uid.equals(arr[i].getUid())){
-				arr[i]=arr[count-1];
-				count--;
-				return;
-			}
-		}		
+			map.remove(uid);
 	}
 	@Override
-	public boolean exist(String keyword) {
-		return keyword==null;
+	public Map<String, MemberBean> mapFindByName(String name) {
+		return null;
 	}
+	@Override
+	public List<MemberBean> keyList() {
+		map.keySet();
+		return null;
+	}
+	
 }
